@@ -18,12 +18,14 @@ function ManageExpenses({ route, navigation }) {
 
   function deleteExpenseHandler() {
     // delete expense logic
+    navigation.goBack();
   }
   function cancelHandler() {
     navigation.goBack();
   }
   function confirmHandler() {
     // confirm expense logic
+    navigation.goBack();
   }
   return (
     <View style={styles.container}>
