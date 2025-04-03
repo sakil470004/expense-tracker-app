@@ -8,8 +8,8 @@ import { GlobalStyles } from "../../constants/styles";
 function ExpensesOutput({ expenses,expensesPeriod }) {
     return (
         <View style={styles.container}>
-            <ExpensesSummery expenses={DUMMY_EXPENSES} periodName={expensesPeriod}/>
-            <ExpensesList expenses={DUMMY_EXPENSES} />
+            <ExpensesSummery expenses={expenses} periodName={expensesPeriod}/>
+            <ExpensesList expenses={expenses} />
         </View>
     )
 }

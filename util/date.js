@@ -11,3 +11,6 @@ export function getFormattedDate(date) {
    // Format the string as "Mon 14-1-2024"
    return `${dayName} ${day}/${month}/${year}`;
 }   
+export function getDateMinusDays(date, days) {
+   return new Date(date.getFullYear(), date.getMonth(), date.getDate() - days);
+}

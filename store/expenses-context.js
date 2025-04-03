@@ -19,9 +19,15 @@ const DUMMY_EXPENSES = [
         amount: 19.99,
         date: new Date('2023-03-01'),
     },
+    {
+        id: 'e4',
+        description: 'A Rosted Chicken',
+        amount: 120,
+        date: new Date('2025-04-04'),
+    },
 ];
 
-const ExpensesContext = createContext({
+export const ExpensesContext = createContext({
     expenses: [],
     addExpense: ({ description, amount, data }) => { },
     deleteExpense: (id) => { },
@@ -64,8 +70,15 @@ function ExpensesContextProvider({ children }) {
         dispatch({ type: 'UPDATE', payload: { id: id, data: expenseData } });
     };
 
+    const value = {
+        expenses: expensesState,
+        addExpense: addExpense,
+        deleteExpense: deleteExpense,
+        updateExpense: updateExpense,
+    };
+
     return (
-        <ExpensesContext.Provider value={{}}>
+        <ExpensesContext.Provider value={value}>
             {children}
         </ExpensesContext.Provider>
     )
