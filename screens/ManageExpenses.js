@@ -59,6 +59,7 @@ function ManageExpenses({ route, navigation }) {
           <IconButton icon="trash" color={GlobalStyles.colors.error500} size={24} onPress={deleteExpenseHandler} />
         </View>
       }
+      
     </View>
   );
 }
