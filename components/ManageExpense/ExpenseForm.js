@@ -24,7 +24,8 @@ function ExpenseForm() {
             <Input label="Description"
                 textInputConfig={{
                     multiline: true,
-                    autoCorrect: false,
+                    // autoCorrect: false,//default is true
+                    // autoCapitalize:'none',//default is 'sentences'
                     onChangeText: () => { },
                 }}
             />
