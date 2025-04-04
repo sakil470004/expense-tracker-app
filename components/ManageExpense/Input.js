@@ -1,4 +1,4 @@
-import { TextInput, View } from "react-native";
+import { Text, TextInput, View } from "react-native";
 
 function Input({ label, textInputConfig }) {
 return(
