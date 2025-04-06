@@ -11,7 +11,7 @@ function ExpenseForm() {
                 keyboardType: 'decimal-pad',
                 maxLength: 5,
                 onchangeText: amountChangeHandler,
-
+                placeholder:'Enter Amount...ex : 10'
             }} />
             <Input label="Date"
                 textInputConfig={{
@@ -24,6 +24,7 @@ function ExpenseForm() {
             <Input label="Description"
                 textInputConfig={{
                     multiline: true,
+                    placeholder:'Enter Description for your Expense',
                     // autoCorrect: false,//default is true
                     // autoCapitalize:'none',//default is 'sentences'
                     onChangeText: () => { },
