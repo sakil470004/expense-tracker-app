@@ -3,7 +3,7 @@ import Input from "./Input";
 
 function ExpenseForm() {
     function amountChangeHandler(enteredValue) {
-
+        // console.log(enteredValue);
     }
     return (
         <View>
@@ -33,3 +33,5 @@ function ExpenseForm() {
     );
 }
 export default ExpenseForm;
+
+
