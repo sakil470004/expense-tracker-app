@@ -34,8 +34,11 @@ function ExpenseForm() {
     );
 }
 export default ExpenseForm;
-
+// style for input
 const styles = StyleSheet.create({
+
+
+
 });
 
 
