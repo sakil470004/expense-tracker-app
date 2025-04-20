@@ -1,13 +1,25 @@
 import { StyleSheet, Text, View } from "react-native";
 import Input from "./Input";
+import { useState } from "react";
 
 function ExpenseForm() {
-    function amountChangeHandler(enteredValue) {
-        // console.log(enteredValue);
+    const [inputValues, setInputValues] = useState({
+        amount: '',
+        date: '',
+        description: '',
+    });
+
+    function amountChangedHandler(inputIdentifier,enteredText) {
+        setInputValues((prevState) => {
+            return {
+                ...prevState,
+                [inputIdentifier]: enteredText,
+            };
+        });
     }
     return (
         <View style={styles.form}>
-        <Text style={styles.formTitle}>Your Expense</Text>
+            <Text style={styles.formTitle}>Your Expense</Text>
             <View style={styles.inputsRow}>
                 <Input
                     style={styles.rowInput}
@@ -15,8 +27,9 @@ function ExpenseForm() {
                     label="Amount" textInputConfig={{
                         keyboardType: 'decimal-pad',
                         maxLength: 5,
-                        onchangeText: amountChangeHandler,
-                        placeholder: 'Enter Amount...ex : 10'
+                        onchangeText: amountChangedHandler.bind(this, 'amount'),
+                        value: inputValues.amount,
+                        placeholder: 'Amount...ex : 10'
                     }} />
                 <Input label="Date"
                     style={styles.rowInput}
@@ -24,7 +37,8 @@ function ExpenseForm() {
                         placeholder: 'YYYY-MM-DD',
                         maxLength: 10,
                         keyboardType: 'numbers-and-punctuation',
-                        onChangeText: () => { },
+                        onChangeText: amountChangedHandler.bind(this, 'date'),
+                        value: inputValues.date,
                     }}
 
                 />
@@ -35,7 +49,8 @@ function ExpenseForm() {
                     placeholder: 'Enter Description for your Expense',
                     // autoCorrect: false,//default is true
                     // autoCapitalize:'none',//default is 'sentences'
-                    onChangeText: () => { },
+                    onChangeText: amountChangedHandler.bind(this, 'description'),
+                    value: inputValues.description,
                 }}
             />
         </View>
@@ -44,10 +59,10 @@ function ExpenseForm() {
 export default ExpenseForm;
 // style for input
 const styles = StyleSheet.create({
-    form:{
+    form: {
         marginTop: 100,
     },
-    formTitle:{
+    formTitle: {
         fontSize: 24,
         fontWeight: 'bold',
         color: 'white',
