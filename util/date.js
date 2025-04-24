@@ -10,7 +10,8 @@ export function getFormattedDate(date) {
    
    // // Format the string as "Mon 14-1-2024"
    // return `${dayName} ${day}/${month}/${year}`;
-   return date.toISOString().slice(0, 10).replace(/-/g, '/');
+   
+   return date.toISOString().slice(0, 10)
 }   
 export function getDateMinusDays(date, days) {
    return new Date(date.getFullYear(), date.getMonth(), date.getDate() - days);
