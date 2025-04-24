@@ -9,9 +9,6 @@ function ExpenseForm({ onCancel, onSubmit, submitButtonLabel }) {
         date: '',
         description: '',
     });
-    useEffect(() => {
-        console.log('inputValues', inputValues);
-    }, [inputValues]);
     function amountChangedHandler(inputIdentifier, enteredText) {
         setInputValues((prevState) => {
             return {
@@ -42,7 +39,7 @@ function ExpenseForm({ onCancel, onSubmit, submitButtonLabel }) {
                         placeholder: 'Amount...ex : 10',
                         keyboardType: 'decimal-pad',
                         maxLength: 5,
-                        onchangeText: amountChangedHandler.bind(this, 'amount'),
+                        onChangeText: amountChangedHandler.bind(this, 'amount'),
                         value: inputValues.amount,
 
                     }} />
