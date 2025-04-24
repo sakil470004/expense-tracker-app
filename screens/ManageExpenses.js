@@ -10,6 +10,7 @@ function ManageExpenses({ route, navigation }) {
 
   const editedExpenseId = route.params?.expenseId;
   const isEditing = !!editedExpenseId;
+  const selectedExpense = expenseCtx.expenses.find((expense) => expense.id === editedExpenseId);
   // loading tittle according to the isEditing state
   // we can use useLayoutEffect instead of useEffect to set the title
   // because we want to set the title before the screen is rendered
@@ -43,6 +44,7 @@ function ManageExpenses({ route, navigation }) {
       onCancel={cancelHandler}
       submitButtonLabel={isEditing ? 'Update' : 'Add'}
       onSubmit={confirmHandler}
+      defaultValues={selectedExpense}
     />
      
       {
