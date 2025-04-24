@@ -3,14 +3,14 @@ import Input from "./Input";
 import { useState } from "react";
 import Button from "../UI/Button";
 
-function ExpenseForm({onCancel,onSubmit,submitButtonLabel}) {
+function ExpenseForm({ onCancel, onSubmit, submitButtonLabel }) {
     const [inputValues, setInputValues] = useState({
         amount: '',
         date: '',
         description: '',
     });
 
-    function amountChangedHandler(inputIdentifier,enteredText) {
+    function amountChangedHandler(inputIdentifier, enteredText) {
         setInputValues((prevState) => {
             return {
                 ...prevState,
@@ -18,7 +18,14 @@ function ExpenseForm({onCancel,onSubmit,submitButtonLabel}) {
             };
         });
     }
-    
+    function submitHandler() {
+        const expenseData = {
+            amount: +inputValues.amount,
+            date: new Date(inputValues.date),
+            description: inputValues.description,
+        }
+        onSubmit(expenseData);
+    }
     return (
         <View style={styles.form}>
             <Text style={styles.formTitle}>Your Expense</Text>
@@ -55,11 +62,11 @@ function ExpenseForm({onCancel,onSubmit,submitButtonLabel}) {
                     value: inputValues.description,
                 }}
             />
-     
-     <View style={styles.buttons}>
-        <Button mode='flat' onPress={onCancel} style={styles.button} >Cancel</Button>
-        <Button onPress={onSubmit} style={styles.button}>{submitButtonLabel}</Button>
-      </View>
+
+            <View style={styles.buttons}>
+                <Button mode='flat' onPress={onCancel} style={styles.button} >Cancel</Button>
+                <Button onPress={submitHandler} style={styles.button}>{submitButtonLabel}</Button>
+            </View>
         </View>
     );
 }
@@ -86,15 +93,15 @@ const styles = StyleSheet.create({
         flex: 1,
         height: 50,
     },
-    buttons:{
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  button: {
-    minWidth: 120,
-    marginHorizontal: 8,
-  },
+    buttons: {
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    button: {
+        minWidth: 120,
+        marginHorizontal: 8,
+    },
 
 });
 
