@@ -12,6 +12,7 @@ export function getFormattedDate(date) {
    // return `${dayName} ${day}/${month}/${year}`;
    
    return date.toISOString().slice(0, 10)
+   // only work for date in format YYYY-MM-DD . if we use other format, we need to convert it to YYYY-MM-DD first
 }   
 export function getDateMinusDays(date, days) {
    return new Date(date.getFullYear(), date.getMonth(), date.getDate() - days);
