@@ -14,6 +14,7 @@ export function getFormattedDate(date) {
    return date.toISOString().slice(0, 10)
    // only work for date in format YYYY-MM-DD . if we use other format, we need to convert it to YYYY-MM-DD first
 }   
+//it will return the date in format YYYY-MM-DD for example 2024-01-14
 export function getDateMinusDays(date, days) {
    return new Date(date.getFullYear(), date.getMonth(), date.getDate() - days);
 }
