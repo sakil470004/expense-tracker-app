@@ -65,9 +65,12 @@ function ExpenseForm({ onCancel, onSubmit, submitButtonLabel, defaultValues }) {
                     style={styles.rowInput}
 
                     label="Amount"
+                    invalid={!inputs.amount.isValid}
                     textInputConfig={{
                         placeholder: 'Amount...ex : 10',
                         keyboardType: 'decimal-pad',
+                    
+                    
                         maxLength: 5,
                         onChangeText: amountChangedHandler.bind(this, 'amount'),
                         value: inputs.amount.value,
@@ -75,6 +78,7 @@ function ExpenseForm({ onCancel, onSubmit, submitButtonLabel, defaultValues }) {
                     }} />
                 <Input label="Date"
                     style={styles.rowInput}
+                    invalid={!inputs.date.isValid}
                     textInputConfig={{
                         placeholder: 'YYYY-MM-DD',
                         maxLength: 10,
@@ -86,6 +90,7 @@ function ExpenseForm({ onCancel, onSubmit, submitButtonLabel, defaultValues }) {
                 />
             </View>
             <Input label="Description"
+                invalid={!inputs.description.isValid}
                 textInputConfig={{
                     multiline: true,
                     placeholder: 'Enter Description for your Expense',
@@ -95,7 +100,7 @@ function ExpenseForm({ onCancel, onSubmit, submitButtonLabel, defaultValues }) {
                     value: inputs.description.value,
                 }}
             />
-            {formIsInvalid && <Text style={{ color: 'red', textAlign: 'center' }}>Invalid Input -- Please Check input data</Text>}
+            {formIsInvalid && <Text style={styles.errorText}>Invalid Input -- Please Check input data</Text>}
             <View style={styles.buttons}>
                 <Button mode='flat' onPress={onCancel} style={styles.button} >Cancel</Button>
                 <Button onPress={submitHandler} style={styles.button}>{submitButtonLabel}</Button>
@@ -125,6 +130,12 @@ const styles = StyleSheet.create({
     rowInput: {
         flex: 1,
         height: 50,
+    },
+    errorText: {
+    textAlign: 'center',
+    color: 'red',
+    margin: 8,
+    fontSize: 16,
     },
     buttons: {
         flexDirection: "row",
