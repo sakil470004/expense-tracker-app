@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         padding: 6,
         borderRadius: 6,
         fontSize: 18,
-    },
+    }, 
     inputMultiline: {
         minHeight: 100,
         maxHeight: 200,
