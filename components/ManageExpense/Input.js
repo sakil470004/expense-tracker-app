@@ -45,9 +45,7 @@ const styles = StyleSheet.create({
         maxHeight: 200,
         textAlignVertical: 'top',
     },
-    // add styles for invalid input
-    // invalidLabel and invalidInput
-    // invalidLabel is for label
+//   label styles
     invalidLabel:{
         color: GlobalStyles.colors.error500,
     },
