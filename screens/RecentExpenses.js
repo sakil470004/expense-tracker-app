@@ -3,7 +3,7 @@ import ExpensesOutput from "../components/ExpensesOutput/ExpensesOutput";
 import { ExpensesContext } from "../store/expenses-context";
 import { getDateMinusDays } from "../util/date";
 import { fetchExpenses } from "../util/http";
-
+// to combine offline and online data we need to work on this component
 function RecentExpenses() {
     const expensesCtx= useContext(ExpensesContext);
     const [fetchedExpenses, setFetchedExpenses] = useState([]);
