@@ -6,11 +6,11 @@ import { fetchExpenses } from "../util/http";
 // to combine offline and online data we need to work on this component
 function RecentExpenses() {
     const expensesCtx= useContext(ExpensesContext);
-    const [fetchedExpenses, setFetchedExpenses] = useState([]);
     useEffect(()=>{
       async function getExpenses(){
+        // get all the expenses from the server
         const expenses = await fetchExpenses();
-        setFetchedExpenses(expenses);
+        // set the expenses in the context
         expensesCtx.setExpenses(expenses);
       }
       // call the function
@@ -18,7 +18,7 @@ function RecentExpenses() {
      
     },[])
 // the expenses are already in the context so we can use them
-    const recentExpenses = fetchedExpenses.filter((expense) => {
+    const recentExpenses = expensesCtx.expenses.filter((expense) => {
         const today = new Date();
         const date7DaysAgo = getDateMinusDays(today, 7);
         return (expense.date >= date7DaysAgo) && (expense.date <= today);

@@ -1,5 +1,4 @@
 import { createContext, useReducer } from "react";
-// dummy data
 
 
 export const ExpensesContext = createContext({
