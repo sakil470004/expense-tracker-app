@@ -29,14 +29,14 @@ function ManageExpenses({ route, navigation }) {
   function cancelHandler() {
     navigation.goBack();
   }
-  function confirmHandler(expenseData) {
+  async function confirmHandler(expenseData) {
     // confirm expense logic
     if(isEditing) {
       // update expense logic
       expenseCtx.updateExpense(editedExpenseId, expenseData);
     }else{
-      storeExpense(expenseData);
-      expenseCtx.addExpense(expenseData);
+      const id=await storeExpense(expenseData);
+      expenseCtx.addExpense({expenseData, id: id});
     }
     navigation.goBack();
   }

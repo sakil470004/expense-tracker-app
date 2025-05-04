@@ -18,7 +18,7 @@ function RecentExpenses() {
      
     },[])
 // the expenses are already in the context so we can use them
-    const recentExpenses = expensesCtx.expenses.filter((expense) => {
+    const recentExpenses = fetchedExpenses.filter((expense) => {
         const today = new Date();
         const date7DaysAgo = getDateMinusDays(today, 7);
         return (expense.date >= date7DaysAgo) && (expense.date <= today);
