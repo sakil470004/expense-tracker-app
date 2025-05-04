@@ -4,10 +4,10 @@ import IconButton from "../components/UI/IconButton";
 import { GlobalStyles } from "../constants/styles";
 import { ExpensesContext } from "../store/expenses-context";
 import ExpenseForm from "../components/ManageExpense/ExpenseForm";
-import { storeExpense } from "../util/http";
+import { deleteExpense, storeExpense, updateExpense } from "../util/http";
 
 function ManageExpenses({ route, navigation }) {
-  const expenseCtx= useContext(ExpensesContext);
+  const expenseCtx = useContext(ExpensesContext);
 
   const editedExpenseId = route.params?.expenseId;
   const isEditing = !!editedExpenseId;
@@ -21,9 +21,10 @@ function ManageExpenses({ route, navigation }) {
     });
   }, [navigation, isEditing]);
 
-  function deleteExpenseHandler() {
+  async function deleteExpenseHandler() {
     // delete expense logic
     expenseCtx.deleteExpense(editedExpenseId);
+    await deleteExpense(editedExpenseId);
     navigation.goBack();
   }
   function cancelHandler() {
@@ -31,25 +32,26 @@ function ManageExpenses({ route, navigation }) {
   }
   async function confirmHandler(expenseData) {
     // confirm expense logic
-    if(isEditing) {
+    if (isEditing) {
       // update expense logic
       expenseCtx.updateExpense(editedExpenseId, expenseData);
-    }else{
-      const id=await storeExpense(expenseData);
-      expenseCtx.addExpense({...expenseData, id: id});
-      
+      await updateExpense(editedExpenseId, expenseData);
+    } else {
+      const id = await storeExpense(expenseData);
+      expenseCtx.addExpense({ ...expenseData, id: id });
+
     }
     navigation.goBack();
   }
   return (
     <View style={styles.container}>
-    <ExpenseForm
-      onCancel={cancelHandler}
-      submitButtonLabel={isEditing ? 'Update' : 'Add'}
-      onSubmit={confirmHandler}
-      defaultValues={selectedExpense}
-    />
-     
+      <ExpenseForm
+        onCancel={cancelHandler}
+        submitButtonLabel={isEditing ? 'Update' : 'Add'}
+        onSubmit={confirmHandler}
+        defaultValues={selectedExpense}
+      />
+
       {
         isEditing &&
         <View style={styles.deleteContainer}>
@@ -69,7 +71,7 @@ const styles = StyleSheet.create({
     padding: 24,
     backgroundColor: GlobalStyles.colors.primary800,
   },
-  
+
   deleteContainer: {
     marginTop: 16,
     paddingTop: 8,
