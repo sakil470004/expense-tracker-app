@@ -6,9 +6,11 @@ import { ExpensesContext } from "../store/expenses-context";
 import ExpenseForm from "../components/ManageExpense/ExpenseForm";
 import { deleteExpense, storeExpense, updateExpense } from "../util/http";
 import LoadingOverlay from "../components/UI/LoadingOverlay";
+import ErrorOverlay from "../components/UI/ErrorOverlay";
 
 function ManageExpenses({ route, navigation }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState();
   const expenseCtx = useContext(ExpensesContext);
 
 
@@ -27,28 +29,51 @@ function ManageExpenses({ route, navigation }) {
   async function deleteExpenseHandler() {
     setIsSubmitting(true);
     // delete expense logic
-    expenseCtx.deleteExpense(editedExpenseId);
-    await deleteExpense(editedExpenseId);
-    // setIsSubmitting(false);
-    navigation.goBack();
+    try {
+
+      await deleteExpense(editedExpenseId);
+      expenseCtx.deleteExpense(editedExpenseId);
+      navigation.goBack();
+    } catch (error) {
+      setError('Could not delete expense!');
+      return;
+    }
+    setIsSubmitting(false);
+
   }
   function cancelHandler() {
     navigation.goBack();
   }
   async function confirmHandler(expenseData) {
     setIsSubmitting(true);
-    // confirm expense logic
-    if (isEditing) {
-      // update expense logic
-      expenseCtx.updateExpense(editedExpenseId, expenseData);
-      // isSubmitting(false);
-      await updateExpense(editedExpenseId, expenseData);
-    } else {
-      const id = await storeExpense(expenseData);
-      // isSubmitting(false);
-      expenseCtx.addExpense({ ...expenseData, id: id });
+    try {
+
+
+      // confirm expense logic
+      if (isEditing) {
+        // update expense logic
+        expenseCtx.updateExpense(editedExpenseId, expenseData);
+        // isSubmitting(false);
+        await updateExpense(editedExpenseId, expenseData);
+      } else {
+        const id = await storeExpense(expenseData);
+        // isSubmitting(false);
+        expenseCtx.addExpense({ ...expenseData, id: id });
+      }
+      navigation.goBack();
+    } catch (error) {
+      setError('Could not save data!');
+      setIsSubmitting(false);
+      return;
+
     }
-    navigation.goBack();
+  }
+  function errorHandler() {
+    setError(null);
+  }
+
+  if (error && !isSubmitting) {
+    return <ErrorOverlay message={error} onConfirm={errorHandler} />
   }
 
   if (isSubmitting) {
