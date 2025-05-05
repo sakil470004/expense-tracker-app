@@ -3,7 +3,7 @@ import ExpensesOutput from "../components/ExpensesOutput/ExpensesOutput";
 import { ExpensesContext } from "../store/expenses-context";
 import { useContext } from "react";
 
-// this only add expenses components
+// this is not working for now. But with some change I can make it work
 function AllExpenses() {
   const expensesCtx = useContext(ExpensesContext);
   return (
