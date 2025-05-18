@@ -34,3 +34,6 @@ export function deleteExpense(id){
 // test this has all the http request
 
 // it also act as db as it use  firebase
+// note : for push notification we cannot use firebase because it is not supported in react native 
+// we can use firebase for push notification but we need to use react native firebase
+// for push notification we can use expo push notification
