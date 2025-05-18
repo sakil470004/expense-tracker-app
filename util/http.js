@@ -32,3 +32,5 @@ export function deleteExpense(id){
 }
 
 // test this has all the http request
+
+// it also act as db as it use  firebase
