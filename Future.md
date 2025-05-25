@@ -2,4 +2,5 @@
 
 1. I will add login (Before that I need to learn it how to do it in react native)
 
-<!-- Hi this is for test -->  
+<!-- this project I stoped there because I move android to web again -->
+<!-- my udamy course is not complete yet make sure I saw it when I have time before contine this project -->
