@@ -1,6 +1,6 @@
 import { createContext, useReducer } from "react";
 
-
+// this file for redux all reducers and actions
 export const ExpensesContext = createContext({
     expenses: [],
     addExpense: ({ description, amount, data,id }) => { },
