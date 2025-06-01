@@ -1,6 +1,6 @@
 import { View, ActivityIndicator, StyleSheet } from "react-native";
 import { GlobalStyles } from "../../constants/styles";
-
+//  whenever loading data from the server we can use this component
 function LoadingOverlay() {
     return (
         <View style={styles.container}>
