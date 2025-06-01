@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { GlobalStyles } from "../../constants/styles";
-
+// this is styled button component
 function Button({children, onPress,mode,style}) {
     return(
         <View style={style}>
