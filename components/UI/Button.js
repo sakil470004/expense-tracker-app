@@ -13,6 +13,7 @@ function Button({children, onPress,mode,style}) {
     )
 }
 export default Button;
+// styles for the button component
 const styles = StyleSheet.create({
 
     button:{
