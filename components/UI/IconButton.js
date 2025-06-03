@@ -1,6 +1,7 @@
 import { Pressable, StyleSheet, View } from "react-native";
 import Ionicons from '@expo/vector-icons/Ionicons';
-
+// this page cureate combine button and icon
+// this is a reusable icon button component
 
 function IconButton({ icon, size, color, onPress }) {
     return (

@@ -1,6 +1,6 @@
 import { View, StyleSheet, Text } from "react-native";
 import { GlobalStyles } from "../../constants/styles";
-
+// this is for error overlay
 function ErrorOverlay({ message, onConfirm }) {
     return (
         <View style={styles.container}>
